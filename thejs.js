@@ -108,7 +108,7 @@ function myWindow(type, state, tofield, ccfield, subjectfield, bodyfield, isLogi
   $('.emailminhigh').removeClass('emailminhigh');
   $('.minholder').append(html);
   var scopeidfinder = this.idfinder;
-  var resizeFunc = function() {
+  var resizeFunc = function () {
     $(scopeidfinder).children('.emailcomposewindow').height($(scopeidfinder).height() - 152);
     var tempheight = $(scopeidfinder).children('.emailcomposewindow').height();
     var tempwidth = $(scopeidfinder).children('.emailcomposewindow').width();
@@ -126,7 +126,7 @@ function myWindow(type, state, tofield, ccfield, subjectfield, bodyfield, isLogi
     minWidth: 673,
     resize: resizeFunc
   });
-  $(this.idfinder).children('.emailcomposewindow').children('.sendbutton').click(function() {
+  $(this.idfinder).children('.emailcomposewindow').children('.sendbutton').click(function () {
     var tofield = $(this).parent().children('.tofield').val();
     var ccfield = $(this).parent().children('.ccfield').val();
     var subjectfield = $(this).parent().children('.subjectfield').val();
@@ -134,7 +134,7 @@ function myWindow(type, state, tofield, ccfield, subjectfield, bodyfield, isLogi
     var id = $(this).parent().parent().attr('id');
     handleEmailSend(id, tofield, ccfield, subjectfield, body);
   });
-  $(this.minfinder).click(function() {
+  $(this.minfinder).click(function () {
     var minid = $(this).attr('id');
     var id = minid.substr(1);
     if ($(this).hasClass('emailminhigh')) {
@@ -144,19 +144,19 @@ function myWindow(type, state, tofield, ccfield, subjectfield, bodyfield, isLogi
       globalWindowDict[id].bringToFront();
     }
   });
-  $(this.idfinder).mousedown(function() {
+  $(this.idfinder).mousedown(function () {
     globalWindowDict[$(this).attr('id')].bringToFront();
   });
-  $(this.idfinder).children('.minimize').click(function() {
+  $(this.idfinder).children('.minimize').click(function () {
     globalWindowDict[$(this).parent().attr('id')].minimize();
   });
-  $(this.idfinder).children('.windowclose').click(function() {
+  $(this.idfinder).children('.windowclose').click(function () {
     globalWindowDict[$(this).parent().attr('id')].close();
   });
-  $(this.idfinder).children('.maximize').click(function() {
+  $(this.idfinder).children('.maximize').click(function () {
     globalWindowDict[$(this).parent().attr('id')].maximize();
   });
-  this.bringToFront = function() {
+  this.bringToFront = function () {
     $('.outlookminhi').removeClass('outlookminhi');
     $('.emailwindow').css('z-index', 50);
     $(this.idfinder).css('z-index', 51);
@@ -164,17 +164,17 @@ function myWindow(type, state, tofield, ccfield, subjectfield, bodyfield, isLogi
     $('.emailminhigh').removeClass('emailminhigh');
     $(this.minfinder).addClass('emailminhigh');
   }
-  this.minimize = function() {
+  this.minimize = function () {
     $(this.minfinder).removeClass('emailminhigh');
     $(this.idfinder).css('display', 'none');
   }
-  this.close = function() {
+  this.close = function () {
     delete globalWindowDict[this.id];
     $(this.minfinder).css('display', 'none');
     $(this.idfinder).css('display', 'none');
     spawnEdge = 100;
   }
-  this.maximize = function() {
+  this.maximize = function () {
     $('.outlookminhi').removeClass('outlookminhi')
     if (!this.isMaxed) {
       this.bringToFront();
@@ -238,7 +238,7 @@ function myStory(parentJson, folder, addToDom) {
   if (addToDom) {
     $('#previewarea').append(previewHTML);
   }
-  this.addToArea = function() {
+  this.addToArea = function () {
     $('#previewarea').append(this.previewHTML);
   }
 }
@@ -438,7 +438,7 @@ function expandoClick() {
   var tempid = $(this).attr('id');
   var finder = '#img' + tempid;
   $(finder).toggle();
-  var resizeFunc = function() {
+  var resizeFunc = function () {
     var idFinder = finder;
     var height = $(idFinder).children('.ui-wrapper').height();
     var width = $(idFinder).children('.ui-wrapper').width() - 10;
@@ -547,15 +547,15 @@ function onReload() {
 function onStoryLoad() {
   $('.expando').click(expandoClick);
   $('.lynxexpando').click(lynxexpandoClick);
-  $('.textreplybutton').click(function() {
+  $('.textreplybutton').click(function () {
     var id = $(this).attr('id').substr(1);
     spawnReplyWindow(id);
   });
-  $('.uparrow').click(function() {
+  $('.uparrow').click(function () {
     makePopup('Sorry, I dont support upvoting anymore because I had to take down my server');
     return 0;
   });
-  $('.downarrow').click(function() {
+  $('.downarrow').click(function () {
     makePopup('Sorry, I dont support downvoting anymore because I had to take down my server');
     return 0;
   });
@@ -748,7 +748,7 @@ function makePopup(string) {
   $('body').append('<div style="display:none"class="popup notclosed">' + string + '</div>');
   $('.notclosed').slideToggle(400);
   setTimeout('closePopup()', 3000);
-  $('.popup').click(function() {
+  $('.popup').click(function () {
     $(this).slideUp(400);
   });
 }
@@ -764,7 +764,7 @@ function makeSoftpopup(string) {
 }
 
 function closeSoftpopup() {
-  $('.spnotdone').fadeOut(function() {
+  $('.spnotdone').fadeOut(function () {
     $('.spnotdone').remove();
   });
 }
@@ -836,12 +836,12 @@ function spawnCommandWindow() {
 }
 
 function addSubReddit() {
-    var subreddit = prompt("Please enter a subreddit name");
-    if (subreddit != null) {
-        makeFolder(subreddit);
-    }
+  var subreddit = prompt("Please enter a subreddit name");
+  if (subreddit != null) {
+    makeFolder(subreddit);
+  }
 }
-$(document).ready(function() {
+$(document).ready(function () {
   onResize();
   $(window).resize(onResize);
   $('.newemailbutton').click(addSubReddit);
@@ -855,13 +855,13 @@ $(document).ready(function() {
   makeFolder('wtf');
   $('#folder_FrontPage').parent().addClass('foldwraphi');
   folderClick('folder_FrontPage');
-  $('.outlookmin').click(function() {
+  $('.outlookmin').click(function () {
     for (key in globalWindowDict) {
       globalWindowDict[key].minimize();
     }
     $(this).addClass('outlookminhi');
   });
-  $('.authorandstuff').keyup(function(event) {
+  $('.authorandstuff').keyup(function (event) {
     if (event.keyCode == 82) {
       var id = $('.commentroothi').parent().attr('id');
       if (id != null) {
